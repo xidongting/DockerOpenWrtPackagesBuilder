@@ -33,8 +33,8 @@ make defconfig
 # [*] Select all userspace packages by default
 # [*] Cryptographically sign package lists (NEW) 
 
-make download -j8 V=s && find dl -size -1024c -exec ls -l {} \; && make package/luci-app-passwall/{clean,compile} -j4
-# make package/luci-app-passwall/{clean,compile} -j4
+make download -j8 V=s && find dl -size -1024c -exec ls -l {} \; 
+make package/luci-app-passwall/{clean,compile} -j4
 
 make package/index
 
