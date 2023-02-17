@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 sudo apt-get update
 sudo apt-get upgrade
 
@@ -12,9 +14,9 @@ echo "src-git PWluci https://github.com/xiaorouji/openwrt-passwall.git;luci" >> 
 
 ./scripts/feeds update -a
 
-# pushd feeds/packages/lang
-# rm -rf golang && svn co https://github.com/openwrt/packages/branches/openwrt-21.02/lang/golang
-# popd
+pushd feeds/packages/lang
+rm -rf golang && svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang
+popd
 
 #在SDK根目录，强制优先安装PWpackages中的 feeds 软件包
 ./scripts/feeds install -a -f -p PWpackages
