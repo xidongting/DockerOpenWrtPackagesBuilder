@@ -1,8 +1,11 @@
 #!/bin/bash
+
+sudo apt-get update
+sudo apt-get upgrade
+
 echo "src-git PWpackages https://github.com/xiaorouji/openwrt-passwall.git;packages" >> feeds.conf.default
 echo "src-git PWluci https://github.com/xiaorouji/openwrt-passwall.git;luci" >> feeds.conf.default
 
-# sudo apt-get update
 # sudo apt-get install upx -y
 # cp /usr/bin/upx staging_dir/host/bin
 # cp /usr/bin/upx-ucl staging_dir/host/bin
@@ -20,9 +23,6 @@ echo "src-git PWluci https://github.com/xiaorouji/openwrt-passwall.git;luci" >> 
 
 make defconfig
 
-# make download -j8 V=s && find dl -size -1024c -exec ls -l {} \; && make package/luci-app-passwall/{clean,compile} -j4
-make package/luci-app-passwall/{clean,compile} -j4
-
 #进入make menuconfig
 # make menuconfig
 # #进入全局设置，如下面所示，然后保存，退出
@@ -31,4 +31,10 @@ make package/luci-app-passwall/{clean,compile} -j4
 # [*] Select all userspace packages by default
 # [*] Cryptographically sign package lists (NEW) 
 
+make download -j8 V=s && find dl -size -1024c -exec ls -l {} \; && make package/luci-app-passwall/{clean,compile} -j4
+# make package/luci-app-passwall/{clean,compile} -j4
+
 make package/index
+
+ls bin/*
+
