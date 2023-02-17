@@ -8,9 +8,9 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 echo "src-git PWpackages https://github.com/xiaorouji/openwrt-passwall.git;packages" >> feeds.conf.default
 echo "src-git PWluci https://github.com/xiaorouji/openwrt-passwall.git;luci" >> feeds.conf.default
 
-# sudo apt-get install upx -y
-# cp /usr/bin/upx staging_dir/host/bin
-# cp /usr/bin/upx-ucl staging_dir/host/bin
+sudo apt-get install upx -y
+cp /usr/bin/upx staging_dir/host/bin
+cp /usr/bin/upx-ucl staging_dir/host/bin
 
 ./scripts/feeds update -a
 
@@ -33,7 +33,7 @@ make defconfig
 # [*] Select all userspace packages by default
 # [*] Cryptographically sign package lists (NEW) 
 
-# make download -j8 V=s && find dl -size -1024c -exec ls -l {} \; 
+make download -j8 V=s && find dl -size -1024c -exec ls -l {} \; 
 make package/luci-app-passwall/{clean,compile} -j4
 
 make package/index
